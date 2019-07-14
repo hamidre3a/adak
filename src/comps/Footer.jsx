@@ -1,6 +1,6 @@
 import React from 'react';
 import Radium from 'radium';
-import { Segment, Grid, Header, Menu, Icon, Input } from 'semantic-ui-react';
+import { Segment,Container, Grid, Header, Menu, Icon, Input } from 'semantic-ui-react';
 
 import { faDigit } from 'utils';
 
@@ -36,43 +36,41 @@ const icons = [
 
 function Footer() {
   return (
-    <Segment basic style={styles.footerRoot}>
-      <Grid>
-        <Grid.Column width={3}>
-          <Header as='h4' style={styles.colHeader}>رزرواسیون</Header>
-          <Menu items={colItems[1]} text vertical inverted />
-        </Grid.Column>
-        <Grid.Column width={3}>
-          <Header as='h4' style={styles.colHeader}>لینک‌ها</Header>
-          <Menu items={colItems[2]} text vertical inverted />
-        </Grid.Column>
-        <Grid.Column width={3}>
-          <Header as='h4' style={styles.colHeader}>ارتباط با ما</Header>
-          {/* <Menu text vertical inverted>
+    <Segment inverted vertical style={{ padding: '5em 0em' }}>
+      <Container>
+        <Grid>
+          <Grid.Column width={4}>
+            <Header as='h4' style={styles.colHeader}>لینک‌ها</Header>
+            <Menu items={colItems[2]} text vertical inverted />
+          </Grid.Column>
+          <Grid.Column width={4}>
+            <Header as='h4' style={styles.colHeader}>ارتباط با ما</Header>
+            {/* <Menu text vertical inverted>
             <Menu.item>آدرس</Menu.item>
             <Menu.item name={faDigit('021-12345678')} />
             <Menu.item name="reservation@nowhere.com" />
           </Menu> */}
-          <p>آدرس</p>
-          <p>{faDigit('12345678-021')}</p>
-          <p>reservation@nowhere.com</p>
-          {/* <Menu text icon>
+            <p>آدرس</p>
+            <p>{faDigit('12345678-021')}</p>
+            <p>reservation@nowhere.com</p>
+            {/* <Menu text icon>
             {icons.map(icon =>
               <Menu.Item><Icon name={icon} color={icon} size='large' /></Menu.Item>
             )}
           </Menu> */}
             {icons.map(icon =>
-              <Icon name={icon} color={icon} size='large' />
+              <Icon key={icon} name={icon} size='large' />
             )}
-        </Grid.Column>
-        <Grid.Column width={7}>
-          <Header as='h4' style={styles.colHeader}>عضویت در خبرنامه</Header>
-          <p>برای دریافت آخرین اخبار و تخفیف ها در سیستم رزرواسیون ایمیل خود را ثبت نمایید.</p>
-          <Input placeholder='ایمیل خود را وارد نمایید ...' fluid
-            action={{ content: 'ثبت', color: 'violet' }}
-          />
-        </Grid.Column>
-      </Grid>
+          </Grid.Column>
+          <Grid.Column width={7}>
+            <Header as='h4' style={styles.colHeader}>عضویت در خبرنامه</Header>
+            <p>برای دریافت آخرین اخبار و تخفیف ها در سیستم رزرواسیون ایمیل خود را ثبت نمایید.</p>
+            <Input placeholder='ایمیل خود را وارد نمایید ...' fluid
+              action={{ content: 'ثبت', color: 'violet' }}
+            />
+          </Grid.Column>
+        </Grid>
+      </Container>
     </Segment>
   );
 }
