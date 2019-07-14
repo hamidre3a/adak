@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Menu, Button } from 'semantic-ui-react';
+import { Menu, Button,  } from 'semantic-ui-react';
 
 
 function Navbar({ location }) {
@@ -19,14 +19,17 @@ function Navbar({ location }) {
     filteredItems[0].active = true;
   return (
     // <Menu items={items} inverted attached stackable size="large" />
-    <Menu inverted attached stackable size="large">
+    <Container>
       {items.map(item => <Menu.Item {...item} />)}
-      <Menu.Menu position='right'>
-        <Menu.Item>
-          <Button color='violet'>ورود / عضویت</Button>
-        </Menu.Item>
-      </Menu.Menu>
-    </Menu>
+      <Menu.Item position='right'>
+        <Button as='a' inverted={!fixed} color="violet" style={{ marginLeft: '0.5em' }}>
+          ورود
+                  </Button>
+        <Button as='a' inverted={!fixed}>
+          عضویت
+                  </Button>
+      </Menu.Item>
+    </Container>
   );
 }
 

@@ -30,6 +30,18 @@ const getWidth = () => {
  * Neither Semantic UI nor Semantic UI React offer a responsive navbar, however, it can be implemented easily.
  * It can be more complicated, but you can create really flexible markup.
  */
+
+const items = [
+  { key: 'home', name: 'صفحه اصلی', href: '/' },
+  { key: 'services', name: 'خدمات', href: '/services' },
+  { key: 'reserve', name: 'رزرو', href: '/reserve' },
+  { key: 'track', name: 'پیگیری رزرو', href: '/track' },
+  { key: 'blog', name: 'بلاگ', href: '/blog' },
+  { key: 'about', name: 'درباره ما', href: '/about' },
+  { key: 'contact', name: 'تماس با ما', href: '/contact' },
+];
+
+
 class DesktopContainer extends Component {
   state = {}
 
@@ -37,6 +49,7 @@ class DesktopContainer extends Component {
   showFixedMenu = () => this.setState({ fixed: true })
 
   render() {
+
     const { children } = this.props
     const { fixed } = this.state
 
@@ -61,12 +74,11 @@ class DesktopContainer extends Component {
               size='large'
             >
               <Container>
-                <Menu.Item as='a' active>
-                  Home
-                </Menu.Item>
-                <Menu.Item as='a'>Work</Menu.Item>
-                <Menu.Item as='a'>Company</Menu.Item>
-                <Menu.Item as='a'>Careers</Menu.Item>
+                {items.map(item => {
+                  if (window.location.pathname.split('/')[1] == item.href.split('/')[1])
+                    return <Menu.Item {...item} active />
+                  return <Menu.Item {...item} />
+                })}
                 <Menu.Item position='right'>
                   <Button as='a' inverted={!fixed} color="violet" style={{ marginLeft: '0.5em' }}>
                     ورود
@@ -100,7 +112,7 @@ class MobileContainer extends Component {
   render() {
     const { children } = this.props
     const { sidebarOpened } = this.state
-
+    console.log(window.location.pathname);
     return (
       <Responsive
         as={Sidebar.Pushable}
@@ -115,14 +127,11 @@ class MobileContainer extends Component {
           vertical
           visible={sidebarOpened}
         >
-          <Menu.Item as='a' active>
-            Home
-          </Menu.Item>
-          <Menu.Item as='a'>Work</Menu.Item>
-          <Menu.Item as='a'>Company</Menu.Item>
-          <Menu.Item as='a'>Careers</Menu.Item>
-          <Menu.Item as='a'>Log in</Menu.Item>
-          <Menu.Item as='a'>Sign Up</Menu.Item>
+          {items.map(item => {
+                  if (window.location.pathname.split('/')[1] == item.href.split('/')[1])
+                    return <Menu.Item {...item} active />
+                  return <Menu.Item {...item} />
+                })}
         </Sidebar>
 
         <Sidebar.Pusher dimmed={sidebarOpened}>
